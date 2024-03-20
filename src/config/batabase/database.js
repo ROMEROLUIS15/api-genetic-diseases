@@ -19,6 +19,10 @@ const authenticated = async() => {
 //Sincronizacion de base de datos
 const syncUp = async() => {
     try {
+        // si colocamos {force: true} dentro del sync() sirve para forzar los cambios a la base de datos
+        //{alter: true} sincroniza
+        // ojo: se recomienda usar al apenas comenzar un proyecto ojo
+        // recordar eliminarlo del sync()
         await sequelize.sync();
         console.log('Conectionn synced successfully...!');
     } catch (error) {
@@ -30,5 +34,5 @@ const syncUp = async() => {
 module.exports = {
     authenticated,
     syncUp,
-   Sequelize
+    sequelize
 }

@@ -1,35 +1,49 @@
-const findAll = (req,res) => {
+const GeneticDiseasesServices = require("./genetic-diseases.service");
+
+const findAll = async (req,res) => {
     const {requestTime, saludo1} = req
+
+    const geneticDiseases = await  GeneticDiseasesServices.findAll();
 
     res.status(200).json({
         message: "method get - findAll",
         requestTime,
-        saludo1
+        saludo1,
+        geneticDiseases
     })
 }
 
 
-const create = (req,res) => {
-    const { requestTime} = req
-    const disease = req.body
-    console.log(req.body)
+const create = async(req,res) => {
+    const { requestTime} = req;
+    const { name, description, cause, mortalityRate, treatment, symptoms } = req.body;
+    // 1 const disease = req.body
+    const geneticDiseases = await GeneticDiseasesServices.create({
+        name,
+        description,
+        cause,
+        mortalityRate,
+        treatment,
+        symptoms,
+    })
     return res.status(201).json({
-        message: "method post - create",
-        data: disease,
-        requestTime
+        // 1 data: disease,
+        requestTime,
+        data: geneticDiseases,
 
     })
 }
 
 
-const findOne = (req,res) => {
+const findOne = async(req,res) => {
     const { requestTime } = req;
-    console.log(req.params)
+    const geneticDiseases = await GeneticDiseasesServices.findOne()
 
     return res.status(200).json({
         message: "method get - findOne",
         id: req.params.id, //muestra en id en el front
-        requestTime
+        requestTime,
+        geneticDiseases
     })
 }
 
