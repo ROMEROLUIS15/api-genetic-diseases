@@ -37,13 +37,14 @@ const create = async(req,res) => {
 
 const findOne = async(req,res) => {
     const { requestTime } = req;
-    const geneticDiseases = await GeneticDiseasesServices.findOne()
+    const { id } = req.params;
+    const geneticDisease = await GeneticDiseasesServices.findOne(id)
 
     return res.status(200).json({
         message: "method get - findOne",
         id: req.params.id, //muestra en id en el front
         requestTime,
-        geneticDiseases
+        geneticDisease
     })
 }
 

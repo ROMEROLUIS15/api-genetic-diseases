@@ -17,9 +17,15 @@ class GeneticDiseasesServices {
     }
 
 
-    static async findOne(){
-        return await GeneticDiseases.findOne()
+    static async findOne(id){
+        return await GeneticDiseases.findOne({
+            where: {
+                id: id
+            }
+        })
     }
+
+    
 }
 
 module.exports = GeneticDiseasesServices; 
