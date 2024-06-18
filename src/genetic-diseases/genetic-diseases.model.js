@@ -38,6 +38,11 @@ const GeneticDiseases = sequelize.define('genetic-diseases', {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: false //este nos da respuesta en el body
+    },
+    status: {
+        type: DataTypes.ENUM('active', 'inactive'),
+        allowNull: false,
+        defaultValue: 'active'
     }
 })
 
